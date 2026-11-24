@@ -1,0 +1,886 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Weddring Stories | Premium Photography</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+    --gold: #d4af37;
+    --lightgold: #f5df9b;
+    --black: #050505;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+/* LOADER */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: loaderOut 1s ease 2s forwards;
+}
+
+.loader h1 {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 35px;
+    animation: pulse 1.2s infinite alternate;
+}
+
+.loader p {
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+@keyframes loaderOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+@keyframes pulse {
+    from { opacity: .4; }
+    to { opacity: 1; }
+}
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: rgba(0,0,0,.9);
+    border-bottom: 1px solid rgba(212,175,55,.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(15px);
+}
+
+nav h2 {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(#302411, #050505 75%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("logo.png") center/contain no-repeat;
+    opacity: .12;
+    animation: logoFloat 8s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%,100% {
+        transform: scale(1);
+        opacity: .08;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: .17;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    animation: heroReveal 1.5s ease both;
+}
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subtitle {
+    color: var(--gold);
+    letter-spacing: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 9vw, 100px);
+    color: var(--lightgold);
+    margin: 20px 0;
+    text-shadow: 0 0 30px rgba(212,175,55,.4);
+    animation: goldGlow 3s infinite alternate;
+}
+
+@keyframes goldGlow {
+    from { text-shadow: 0 0 10px rgba(212,175,55,.2); }
+    to { text-shadow: 0 0 35px rgba(212,175,55,.7); }
+}
+
+.hero p {
+    color: #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 2;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    margin: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    position: relative;
+    transition: .4s;
+}
+
+.btn:hover {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 0 20px rgba(212,175,55,.5);
+    transform: translateY(-4px);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 100px 7%;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.heading h2 {
+    color: var(--gold);
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.heading p {
+    color: #aaa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(55px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ABOUT */
+
+.about {
+    background: #101010;
+    text-align: center;
+}
+
+.about p {
+    max-width: 800px;
+    margin: auto;
+    color: #ccc;
+    font-family: 'Poppins', sans-serif;
+    line-height: 2.2;
+    font-size: 14px;
+}
+
+.owner {
+    color: var(--gold);
+    font-size: 27px;
+    margin: 30px;
+    animation: goldGlow 3s infinite alternate;
+}
+
+/* SERVICES - 3 TOP + 2 CENTERED */
+
+.services {
+    background: #080808;
+}
+
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.service-box {
+    grid-column: span 2;
+    padding: 40px 20px;
+    text-align: center;
+    border: 1px solid rgba(212,175,55,.4);
+    background: linear-gradient(145deg,#181818,#0c0c0c);
+    transition: .5s;
+}
+
+.service-box:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.service-box:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+.service-box:hover {
+    transform: translateY(-12px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(212,175,55,.15);
+}
+
+.service-box .icon {
+    font-size: 35px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.service-box h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+.service-box p {
+    color: #aaa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* GALLERY */
+
+.gallery {
+    background: #111;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.gallery-grid figure {
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(212,175,55,.4);
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform .8s ease, filter .8s ease;
+}
+
+.gallery-grid figure:hover img {
+    transform: scale(1.12);
+    filter: brightness(.7);
+}
+
+.gallery-grid figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(transparent,rgba(0,0,0,.9));
+    color: var(--lightgold);
+    font-size: 17px;
+    opacity: 0;
+    transition: .5s;
+}
+
+.gallery-grid figure:hover figcaption {
+    opacity: 1;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+    background: radial-gradient(#302411,#050505 75%);
+}
+
+.contact p {
+    color: #ccc;
+    margin: 15px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 2;
+    font-size: 13px;
+}
+
+/* SOCIAL ICONS */
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0 15px;
+}
+
+.social-icons a {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 25px;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.social-icons a:hover {
+    background: var(--gold);
+    color: black;
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(212,175,55,.5);
+}
+
+.social-name {
+    color: var(--lightgold);
+    letter-spacing: 3px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    margin: 15px 0 30px;
+}
+
+/* EMAIL */
+
+.email-contact {
+    margin: 25px 0;
+    color: var(--gold);
+    font-family: 'Poppins', sans-serif;
+}
+
+.email-contact i {
+    margin-right: 10px;
+}
+
+.email-contact a {
+    color: #eee;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.email-contact a:hover {
+    color: var(--gold);
+}
+
+/* FOOTER */
+
+footer {
+    background: #050505;
+    padding: 30px;
+    text-align: center;
+    color: var(--gold);
+    border-top: 1px solid #80651e;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+/* GOLD PARTICLES */
+
+.particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: .5;
+    pointer-events: none;
+    z-index: 1;
+    animation: sparkle 6s linear infinite;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    30% { opacity: .6; }
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav h2 {
+        font-size: 21px;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 10px;
+    }
+
+    .service-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .service-box,
+    .service-box:nth-child(4),
+    .service-box:nth-child(5) {
+        grid-column: span 1;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 9px;
+    }
+
+    .gallery-grid img {
+        height: 190px;
+    }
+
+    section {
+        padding: 65px 5%;
+    }
+
+    .heading h2 {
+        font-size: 36px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .social-icons {
+        gap: 18px;
+    }
+
+    .social-icons a {
+        width: 50px;
+        height: 50px;
+        font-size: 21px;
+    }
+
+    .email-contact a {
+        font-size: 12px;
+    }
+}
+
+@media(max-width:420px) {
+
+    .service-container {
+        grid-template-columns: 1fr;
+    }
+
+    .service-box,
+    .service-box:nth-child(4),
+    .service-box:nth-child(5) {
+        grid-column: span 1;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader">
+    <h1>WEDDRING STORIES</h1>
+    <p>CAPTURING MEMORIES</p>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <h2>WEDDRING STORIES</h2>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- HOME -->
+
+<header class="hero" id="home">
+
+    <div class="hero-content">
+
+        <p class="subtitle">
+            PREMIUM WEDDING PHOTOGRAPHY
+        </p>
+
+        <h1>Weddring Stories</h1>
+
+        <p>
+            Every Picture Tells A Story.<br>
+            Every Moment Becomes A Memory.
+        </p>
+
+        <a href="#gallery" class="btn">
+            EXPLORE GALLERY
+        </a>
+
+        <a href="https://wa.me/917639190864"
+           class="btn">
+            BOOK NOW
+        </a>
+
+    </div>
+
+</header>
+
+<!-- ABOUT -->
+
+<section class="about reveal" id="about">
+
+    <div class="heading">
+        <h2>About Us</h2>
+        <p>CAPTURING BEAUTIFUL MOMENTS FOREVER</p>
+    </div>
+
+    <p>
+        Welcome to Weddring Stories, a premium photography
+        company dedicated to capturing life's most beautiful
+        moments. We believe every photograph has a story
+        behind it. Our goal is to transform your special
+        occasions into timeless memories through creativity,
+        passion and professional photography.
+    </p>
+
+    <div class="owner">
+        Founder & Photographer<br>
+        Siva Kumar Vadamalayan
+    </div>
+
+    <p>
+        For further details, packages and bookings,
+        please contact us.
+    </p>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="services reveal" id="services">
+
+    <div class="heading">
+        <h2>Our Services</h2>
+        <p>PROFESSIONAL PHOTOGRAPHY FOR EVERY OCCASION</p>
+    </div>
+
+    <div class="service-container">
+
+        <div class="service-box">
+            <div class="icon">✦</div>
+            <h3>Wedding Photography</h3>
+            <p>Capturing your beautiful wedding moments.</p>
+        </div>
+
+        <div class="service-box">
+            <div class="icon">✧</div>
+            <h3>Birthday Photography</h3>
+            <p>Making birthday celebrations unforgettable.</p>
+        </div>
+
+        <div class="service-box">
+            <div class="icon">◇</div>
+            <h3>Model Shoot</h3>
+            <p>Creative portraits and professional portfolios.</p>
+        </div>
+
+        <div class="service-box">
+            <div class="icon">♡</div>
+            <h3>Maternity Shoot</h3>
+            <p>Capturing the beautiful journey of motherhood.</p>
+        </div>
+
+        <div class="service-box">
+            <div class="icon">✺</div>
+            <h3>Event Photography</h3>
+            <p>Professional coverage for all special events.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery reveal" id="gallery">
+
+    <div class="heading">
+        <h2>Our Gallery</h2>
+        <p>A COLLECTION OF BEAUTIFUL MEMORIES</p>
+    </div>
+
+    <div class="gallery-grid">
+
+        <figure>
+            <img src="photo1.jpg" alt="Wedding Photography">
+            <figcaption>Wedding Moments</figcaption>
+        </figure>
+
+        <figure>
+            <img src="photo2.jpg" alt="Wedding Photography">
+            <figcaption>Wedding Stories</figcaption>
+        </figure>
+
+        <figure>
+            <img src="photo3.jpg" alt="Wedding Photography">
+            <figcaption>Beautiful Celebrations</figcaption>
+        </figure>
+
+        <figure>
+            <img src="photo4.jpg" alt="Couple Photography">
+            <figcaption>Couple Portraits</figcaption>
+        </figure>
+
+        <figure>
+            <img src="photo5.jpg" alt="Event Photography">
+            <figcaption>Special Moments</figcaption>
+        </figure>
+
+        <figure>
+            <img src="photo6.jpg" alt="Portrait Photography">
+            <figcaption>Timeless Memories</figcaption>
+        </figure>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact reveal" id="contact">
+
+    <div class="heading">
+        <h2>Contact Us</h2>
+        <p>LET'S CAPTURE YOUR BEAUTIFUL MOMENTS</p>
+    </div>
+
+    <p>
+        <strong>Weddring Stories</strong><br>
+        Owner: Siva Kumar Vadamalayan
+    </p>
+
+    <p>
+        Call For Booking: 90802 76579<br>
+        WhatsApp Booking: 76391 90864
+    </p>
+
+    <a href="tel:+919080276579" class="btn">
+        <i class="fas fa-phone"></i> CALL NOW
+    </a>
+
+    <a href="https://wa.me/917639190864?text=Hello%20Weddring%20Stories%2C%20I%20would%20like%20to%20enquire%20about%20booking."
+       class="btn">
+        <i class="fab fa-whatsapp"></i> WHATSAPP BOOKING
+    </a>
+
+    <!-- SOCIAL MEDIA -->
+
+    <div class="heading" style="margin-top:50px;">
+        <h2>Connect With Us</h2>
+        <p>FOLLOW OUR JOURNEY</p>
+    </div>
+
+    <div class="social-icons">
+
+        <a href="https://www.instagram.com/weddringstories/"
+           target="_blank"
+           rel="noopener"
+           aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/search/top?q=weddring%20stories"
+           target="_blank"
+           rel="noopener"
+           aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.youtube.com/results?search_query=weddring+stories"
+           target="_blank"
+           rel="noopener"
+           aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+
+    </div>
+
+    <h3 class="social-name">@weddringstories</h3>
+
+    <!-- EMAIL -->
+
+    <div class="email-contact">
+
+        <i class="fas fa-envelope"></i>
+
+        <a href="mailto:weddringstories31@gmail.com">
+            weddringstories31@gmail.com
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 Weddring Stories | Premium Wedding Photography
+    <br><br>
+    Designed by Siva Kumar Vadamalayan
+</footer>
+
+<!-- JAVASCRIPT ANIMATIONS -->
+
+<script>
+
+// SCROLL REVEAL
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting) {
+            entry.target.classList.add("active");
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+
+// GOLD FLOATING PARTICLES
+
+for(let i = 0; i < 18; i++) {
+
+    let particle = document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left = Math.random() * 100 + "vw";
+
+    particle.style.animationDelay =
+        Math.random() * 6 + "s";
+
+    particle.style.animationDuration =
+        (4 + Math.random() * 6) + "s";
+
+    document.body.appendChild(particle);
+
+}
+
+</script>
+
+</body>
+</html>
